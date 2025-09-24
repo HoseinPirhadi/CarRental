@@ -12,8 +12,11 @@ import SectionHeader from '../components/SectionHeader';
 import HorizontalItem from '../components/HorizontalItem';
 import VerticalItem from '../components/VerticalItem';
 import CategoryItem from '../components/CategoryItem';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   let api_data = [
     {
       id: '1',
@@ -68,6 +71,10 @@ const HomeScreen = () => {
     },
   ];
 
+  const carPress = (id: string) => {
+    navigation.navigate('CarDetail', { id });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
@@ -89,7 +96,9 @@ const HomeScreen = () => {
         <FlatList
           data={api_data2}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <HorizontalItem car={item} />}
+          renderItem={({ item }) => (
+            <HorizontalItem car={item} onPress={carPress} />
+          )}
           ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
           style={styles.horizontalList}
           contentContainerStyle={{ paddingTop: 25, paddingEnd: 15 }}

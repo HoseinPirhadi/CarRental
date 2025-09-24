@@ -3,9 +3,14 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
 import MyIcon from './MyIcon';
 
-const HorizontalItem = ({ car }: any) => {
+type Props = {
+  car: any;
+  onPress: (id: string) => void;
+};
+
+const HorizontalItem = ({ car, onPress }: Props) => {
   return (
-    <TouchableOpacity style={styles.countainer}>
+    <TouchableOpacity style={styles.countainer} onPress={() => onPress(car.id)}>
       <Image style={styles.carImage} source={car.image} />
 
       <View style={styles.countainerCar}>
