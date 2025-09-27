@@ -2,9 +2,9 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
-import ReceiptScreen from '../screens/ReceiptScreen';
+import FavoriteScreen from '../screens/FavoriteScreen';
 import UserScreen from '../screens/UserScreen';
-import { COLORS } from '../theme/theme';
+import { COLORS, FONTFAMILY } from '../theme/theme';
 import MyIcon from '../components/MyIcon';
 
 const Tab = createBottomTabNavigator();
@@ -14,17 +14,21 @@ const BottomNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarHideOnKeyboard: true,
-        headerShown: false,
         tabBarStyle: {
           height: 100,
           paddingTop: 15,
         },
+        headerTitleStyle: {
+          fontFamily: FONTFAMILY.iransansx_medium,
+        },
+        headerTitleAlign: 'center',
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -46,15 +50,15 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Receipt"
-        component={ReceiptScreen}
+        name="علاقه مندی ها"
+        component={FavoriteScreen}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <View style={styles.countainer}>
                 <MyIcon
-                  name="receipt"
+                  name="heart"
                   color={focused ? COLORS.Primary : COLORS.Grey}
                   size={size}
                 />
@@ -70,7 +74,7 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="User"
+        name="پروفایل"
         component={UserScreen}
         options={{
           tabBarShowLabel: false,

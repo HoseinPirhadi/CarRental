@@ -5,12 +5,12 @@ import MyIcon from './MyIcon';
 
 type Props = {
   car: any;
-  onPress: (id: string) => void;
+  onPress: (car: object) => void;
 };
 
 const HorizontalItem = ({ car, onPress }: Props) => {
   return (
-    <TouchableOpacity style={styles.countainer} onPress={() => onPress(car.id)}>
+    <TouchableOpacity style={styles.countainer} onPress={() => onPress(car)}>
       <Image style={styles.carImage} source={car.image} />
 
       <View style={styles.countainerCar}>
@@ -25,7 +25,7 @@ const HorizontalItem = ({ car, onPress }: Props) => {
             color={COLORS.Primary}
             size={FONTSIZE.size_18}
           />
-          <Text style={styles.detalText}>{car.location}</Text>
+          <Text style={styles.detalText}>{car.city}</Text>
         </View>
 
         <View style={styles.detailItem}>
@@ -34,7 +34,7 @@ const HorizontalItem = ({ car, onPress }: Props) => {
             color={COLORS.Primary}
             size={FONTSIZE.size_18}
           />
-          <Text style={styles.detalText}>{car.gear}</Text>
+          <Text style={styles.detalText}>{car.gearbox}</Text>
         </View>
 
         <View style={styles.detailItem}>
@@ -43,7 +43,7 @@ const HorizontalItem = ({ car, onPress }: Props) => {
             color={COLORS.Primary}
             size={FONTSIZE.size_16}
           />
-          <Text style={styles.detalText}>{car.volume}</Text>
+          <Text style={styles.detalText}>{car.fuel_capacity} لیتر</Text>
         </View>
       </View>
     </TouchableOpacity>

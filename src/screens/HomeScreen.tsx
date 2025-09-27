@@ -11,68 +11,109 @@ import SearchBar from '../components/SearchBar';
 import SectionHeader from '../components/SectionHeader';
 import HorizontalItem from '../components/HorizontalItem';
 import VerticalItem from '../components/VerticalItem';
-import CategoryItem from '../components/CategoryItem';
+import BrandItem from '../components/BrandItem';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
-  let api_data = [
+  let brands = [
     {
       id: '1',
-      brand: 'ایران خودرو',
-      image: require('../assets/brands/iran-khodro.png'),
-    },
-    { id: '2', brand: 'بی ام و', image: require('../assets/brands/bmw.png') },
-    { id: '3', brand: 'بنز', image: require('../assets/brands/benz.png') },
-    { id: '4', brand: 'سایپا', image: require('../assets/brands/saipa.png') },
-    { id: '5', brand: 'نیسان', image: require('../assets/brands/nissan.png') },
-  ];
-  let api_data2 = [
-    {
-      id: '1',
-      name: '207',
-      image: require('../assets/images/207.png'),
-      price: '800 هزار تومان',
-      location: 'اصفهان',
-      gear: 'دنده ای',
-      volume: '30 لیتر',
-      type: 'سدان',
+      name: 'ایران خودرو',
+      img_logo: require('../assets/brands/iran-khodro.png'),
+      created_at: '2025-09-24T10:51:00.803861+00:00',
     },
     {
       id: '2',
-      name: 'Mazda 3',
-      image: require('../assets/images/mazda-3.png'),
-      price: '2 میلیون تومان',
-      location: 'یزد',
-      gear: 'دنده ای',
-      volume: '42 لیتر',
-      type: 'کوپه ',
+      name: 'بی ام و',
+      img_logo: require('../assets/brands/bmw.png'),
+      created_at: '2025-09-24T10:51:35.971605+00:00',
     },
     {
       id: '3',
-      name: 'Tiggo 8 ProMax',
-      image: require('../assets/images/tiggo-8.png'),
-      price: '1.5 میلیون تومان',
-      location: 'مشهد',
-      gear: 'اتوماتیک',
-      volume: '50 لیتر',
-      type: 'شاسی‌بلند',
+      name: 'بنز',
+      img_logo: require('../assets/brands/benz.png'),
+      created_at: '2025-09-24T10:51:52.322591+00:00',
     },
     {
       id: '4',
-      name: 'BMW Z4',
-      image: require('../assets/images/bmw-z4.png'),
-      price: '3 میلیون تومان',
-      location: 'تهران',
-      gear: 'اتوماتیک',
-      volume: '70 لیتر',
+      name: 'سایپا',
+      img_logo: require('../assets/brands/saipa.png'),
+      created_at: '2025-09-24T10:52:06.953867+00:00',
+    },
+    {
+      id: '5',
+      name: 'نیسان',
+      img_logo: require('../assets/brands/nissan.png'),
+      created_at: '2025-09-24T10:52:22.039149+00:00',
+    },
+  ];
+  let cars = [
+    {
+      id: '1',
+      name: '207',
+      type: 'سدان',
+      gearbox: 'دنده ای',
+      fuel_capacity: 30,
+      max_speed: 200,
+      city: 'اصفهان',
+      latitude: 32.6622103,
+      longitude: 51.6703114,
+      image: require('../assets/images/207.png'),
+      brand_id: 1,
+      price: 5000000,
+      color: 'سفید',
+    },
+    {
+      id: '2',
+      name: 'مزدا 3',
       type: 'کوپه',
+      gearbox: 'اتوماتیک',
+      fuel_capacity: 5,
+      max_speed: 220,
+      city: 'یزد',
+      latitude: 31.9017073,
+      longitude: 54.3684658,
+      image: require('../assets/images/mazda-3.png'),
+      brand_id: 4,
+      price: 6500000,
+      color: 'سفید',
+    },
+    {
+      id: '3',
+      name: 'تیگو 8 پرومکس',
+      type: 'شاسی بلند',
+      gearbox: 'اتوماتیک',
+      fuel_capacity: 60,
+      max_speed: 240,
+      city: 'مشهد',
+      latitude: 36.3044858,
+      longitude: 59.6135057,
+      image: require('../assets/images/tiggo-8.png'),
+      brand_id: 3,
+      price: 6200000,
+      color: 'مشکی',
+    },
+    {
+      id: '4',
+      name: 'بی ام و Z4',
+      type: 'کوپه',
+      gearbox: 'اتوماتیک',
+      fuel_capacity: 70,
+      max_speed: 270,
+      city: 'تهران',
+      latitude: 35.7834014,
+      longitude: 51.3767525,
+      image: require('../assets/images/bmw-z4.png'),
+      brand_id: 2,
+      price: 7000000,
+      color: 'قرمز',
     },
   ];
 
-  const carPress = (id: string) => {
-    navigation.navigate('CarDetail', { id });
+  const carPress = (car: object) => {
+    navigation.navigate('CarDetail', { car });
   };
 
   return (
@@ -83,9 +124,9 @@ const HomeScreen = () => {
 
         <SectionHeader title="بر اساس برند" />
         <FlatList
-          data={api_data}
+          data={brands}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <CategoryItem category={item} />}
+          renderItem={({ item }) => <BrandItem brand={item} />}
           ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
           style={styles.horizontalList}
           horizontal
@@ -94,7 +135,7 @@ const HomeScreen = () => {
 
         <SectionHeader title="خودرو های لوکس" />
         <FlatList
-          data={api_data2}
+          data={cars}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <HorizontalItem car={item} onPress={carPress} />
@@ -108,9 +149,11 @@ const HomeScreen = () => {
 
         <SectionHeader title="جدیدترین ها" />
         <FlatList
-          data={api_data2}
+          data={cars}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <VerticalItem car={item} />}
+          renderItem={({ item }) => (
+            <VerticalItem car={item} onPress={carPress} />
+          )}
           scrollEnabled={false}
         />
       </ScrollView>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from '../assets/icons/home.svg';
-import Receipt from '../assets/icons/receipt.svg';
+import Heart from '../assets/icons/heart.svg';
 import User from '../assets/icons/user.svg';
 import Search from '../assets/icons/search.svg';
 import ArrowLeft from '../assets/icons/arrow-left.svg';
@@ -10,10 +10,13 @@ import Location from '../assets/icons/location.svg';
 import LocationBold from '../assets/icons/location-bold.svg';
 import Moneys from '../assets/icons/moneys.svg';
 import Speedometer from '../assets/icons/speedometer.svg';
+import Bucket from '../assets/icons/bucket.svg';
+import HeartFill from '../assets/icons/heart-fill.svg';
+import CloseCircle from '../assets/icons/close-circle.svg';
 
 const icons = {
   home: Home,
-  receipt: Receipt,
+  heart: Heart,
   user: User,
   search: Search,
   'arrow-left': ArrowLeft,
@@ -23,6 +26,9 @@ const icons = {
   'location-bold': LocationBold,
   moneys: Moneys,
   speedometer: Speedometer,
+  bucket: Bucket,
+  'heart-fill': HeartFill,
+  'close-Circle': CloseCircle,
 };
 
 type IconProps = {

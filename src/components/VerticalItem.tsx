@@ -3,9 +3,14 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MyIcon from './MyIcon';
 import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
 
-const VerticalItem = ({ car }: any) => {
+type Props = {
+  car: any;
+  onPress: (car: object) => void;
+};
+
+const VerticalItem = ({ car, onPress }: Props) => {
   return (
-    <View style={styles.countainer}>
+    <TouchableOpacity style={styles.countainer} onPress={() => onPress(car)}>
       <Image source={car.image} style={styles.carImage} resizeMode="contain" />
 
       <View style={styles.cardBottom}>
@@ -14,19 +19,19 @@ const VerticalItem = ({ car }: any) => {
           <View style={styles.priceCountainer}>
             <MyIcon name="moneys" size={FONTSIZE.size_24} />
             <Text style={styles.priceText}>
-              {car.price}
+              {car.price.toLocaleString('fa-IR')} تومان
               <Text style={{ fontSize: FONTSIZE.size_12 }}>/روزانه</Text>
             </Text>
           </View>
         </View>
 
         <View style={styles.buttonCountainer}>
-          <TouchableOpacity style={styles.buttonAction}>
+          <View style={styles.buttonAction}>
             <MyIcon name="arrow-left" color={COLORS.White} />
-          </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

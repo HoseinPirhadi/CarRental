@@ -2,16 +2,16 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
 
-const CategoryItem = ({ category }: any) => {
+const BrandItem = ({ brand }: any) => {
   return (
     <TouchableOpacity style={styles.container}>
-      <Image source={category.image} style={styles.brandImage} />
-      <Text style={styles.brandTitle}>{category.brand}</Text>
+      <Image source={brand.img_logo} style={styles.brandImage} />
+      <Text style={styles.brandTitle}>{brand.name}</Text>
     </TouchableOpacity>
   );
 };
 
-export default CategoryItem;
+export default BrandItem;
 
 const styles = StyleSheet.create({
   container: {

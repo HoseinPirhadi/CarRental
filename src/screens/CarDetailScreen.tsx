@@ -16,10 +16,12 @@ import {
 } from '@maplibre/maplibre-react-native';
 import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
 import MyIcon from '../components/MyIcon';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { MAP_API_KEY } from '../api/Config';
 
 const CarDetailScreen = () => {
+  const route = useRoute();
+  const { car } = route.params;
   // set map api key
   addCustomHeader('x-api-key', MAP_API_KEY);
 
@@ -27,7 +29,9 @@ const CarDetailScreen = () => {
   const backHandler = () => navigation.goBack();
 
   // test ui location
-  const PARDISAN_COORDINATES = [51.377928, 35.708617];
+  const PARDISAN_COORDINATES = [51.6703114, 32.6622103];
+
+  if (!car) return null;
 
   return (
     <View style={styles.container}>
@@ -48,12 +52,12 @@ const CarDetailScreen = () => {
         mapStyle="https://map.ir/vector/styles/main/mapir-xyz-style-min-poi.json"
       >
         <Camera
-          centerCoordinate={PARDISAN_COORDINATES}
+          centerCoordinate={[car.longitude, car.latitude]}
           zoomLevel={14}
           minZoomLevel={11}
           maxZoomLevel={15}
         />
-        <MarkerView coordinate={PARDISAN_COORDINATES}>
+        <MarkerView coordinate={[car.longitude, car.latitude]}>
           <MyIcon name="location-bold" color={COLORS.Primary} size={35} />
         </MarkerView>
       </MapView>
@@ -61,11 +65,13 @@ const CarDetailScreen = () => {
       <View style={styles.bottomContainer}>
         <View style={styles.bottomHeader}>
           <View>
-            <Text style={styles.carName}>نام خودرو</Text>
-            <Text style={styles.carPrice}>800 هزار تومان</Text>
+            <Text style={styles.carName}>{car.name}</Text>
+            <Text style={styles.carPrice}>
+              {car.price.toLocaleString('fa-IR')} تومان
+            </Text>
           </View>
           <Image
-            source={require('../assets/images/207.png')}
+            source={car.image}
             style={styles.carImg}
             resizeMode="stretch"
           />
@@ -82,7 +88,7 @@ const CarDetailScreen = () => {
                   size={FONTSIZE.size_20}
                   color={COLORS.Primary}
                 />
-                <Text style={styles.generalValue}>180 km/s</Text>
+                <Text style={styles.generalValue}>{car.max_speed} km/s</Text>
               </View>
               <Text style={styles.generalTitle}>حداکثر سرعت</Text>
             </View>
@@ -94,7 +100,7 @@ const CarDetailScreen = () => {
                   size={FONTSIZE.size_20}
                   color={COLORS.Primary}
                 />
-                <Text style={styles.generalValue}>دنده ای</Text>
+                <Text style={styles.generalValue}>{car.gearbox}</Text>
               </View>
               <Text style={styles.generalTitle}>گیربکس</Text>
             </View>
@@ -102,13 +108,13 @@ const CarDetailScreen = () => {
             <View style={styles.generalBox}>
               <View style={styles.generalContent}>
                 <MyIcon
-                  name="user"
+                  name="bucket"
                   size={FONTSIZE.size_20}
                   color={COLORS.Primary}
                 />
-                <Text style={styles.generalValue}>5 سرنشین</Text>
+                <Text style={styles.generalValue}>{car.color}</Text>
               </View>
-              <Text style={styles.generalTitle}>ظرفیت</Text>
+              <Text style={styles.generalTitle}>رنگ</Text>
             </View>
           </View>
 
