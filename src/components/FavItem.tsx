@@ -6,12 +6,15 @@ import MyIcon from './MyIcon';
 type Props = {
   car: any;
   onPress: (car: object) => void;
+  onRemove: (id: any) => void;
 };
 
-const FavItem = ({ car, onPress }: Props) => {
+const FavItem = React.memo(({ car, onPress, onRemove }: Props) => {
   return (
     <TouchableOpacity style={styles.countainer} onPress={() => onPress(car)}>
-      <MyIcon name="close-Circle" />
+      <TouchableOpacity onPress={() => onRemove(car.id)}>
+        <MyIcon name="close-Circle" />
+      </TouchableOpacity>
       <Image source={car.image} style={styles.carImage} resizeMode="contain" />
       <View style={{ gap: 5 }}>
         <Text style={styles.carName}>{car.name}</Text>
@@ -25,7 +28,7 @@ const FavItem = ({ car, onPress }: Props) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 export default FavItem;
 

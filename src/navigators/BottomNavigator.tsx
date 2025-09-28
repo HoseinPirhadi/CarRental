@@ -22,13 +22,13 @@ const BottomNavigator = () => {
           fontFamily: FONTFAMILY.iransansx_medium,
         },
         headerTitleAlign: 'center',
+        headerShown: false,
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -53,6 +53,7 @@ const BottomNavigator = () => {
         name="علاقه مندی ها"
         component={FavoriteScreen}
         options={{
+          headerShown: true,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color, size }) => {
             return (
@@ -77,6 +78,7 @@ const BottomNavigator = () => {
         name="پروفایل"
         component={UserScreen}
         options={{
+          headerShown: true,
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color, size }) => {
             return (

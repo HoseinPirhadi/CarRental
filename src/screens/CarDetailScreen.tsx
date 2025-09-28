@@ -18,6 +18,8 @@ import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
 import MyIcon from '../components/MyIcon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { MAP_API_KEY } from '../api/Config';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorites, toggleFavorite } from '../store/favoritesSlice';
 
 const CarDetailScreen = () => {
   const route = useRoute();
@@ -28,15 +30,23 @@ const CarDetailScreen = () => {
   const navigation = useNavigation();
   const backHandler = () => navigation.goBack();
 
-  // test ui location
-  const PARDISAN_COORDINATES = [51.6703114, 32.6622103];
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const isFavorite = favorites.some(favItem => favItem.id === car.id);
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorite(car));
+  };
 
-  if (!car) return null;
+  const iconName = isFavorite ? 'heart-fill' : 'heart';
+  const iconColor = isFavorite ? COLORS.Primary : COLORS.Black;
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainerL}>
         <View style={styles.headerContent}>
+          <TouchableOpacity onPress={handleToggleFavorite}>
+            <MyIcon name={iconName} color={iconColor} />
+          </TouchableOpacity>
           <Text style={styles.headerTitle}>موقعیت خودرو</Text>
           <TouchableOpacity onPress={backHandler}>
             <MyIcon name="arrow-left" color={COLORS.Black} />
@@ -159,6 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: FONTSIZE.size_16,
     fontFamily: FONTFAMILY.iransansx_medium,
+    textAlign: 'center',
   },
   mapContainer: {
     flex: 1,

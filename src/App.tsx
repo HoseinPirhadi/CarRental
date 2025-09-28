@@ -2,6 +2,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNavigator from './navigators/BottomNavigator';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
 import CarDetailScreen from './screens/CarDetailScreen';
 
 const Stack = createNativeStackNavigator();
@@ -17,8 +20,12 @@ function RootStack() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <RootStack />
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   );
 }
