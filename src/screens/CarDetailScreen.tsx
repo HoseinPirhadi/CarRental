@@ -32,7 +32,7 @@ const CarDetailScreen = () => {
 
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-  const isFavorite = favorites.some(favItem => favItem.id === car.id);
+  const isFavorite = favorites.some((favItem: any) => favItem.id === car.id);
   const handleToggleFavorite = () => {
     dispatch(toggleFavorite(car));
   };

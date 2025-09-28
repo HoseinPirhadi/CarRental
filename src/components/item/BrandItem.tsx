@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.White,
     alignItems: 'center',
     borderRadius: 12,
-    padding: 15,
+    paddingHorizontal: 25,
+    paddingVertical: 15,
     gap: 15,
   },
   brandImage: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   brandTitle: {
-    fontFamily: FONTFAMILY.iransansx_medium,
+    fontFamily: FONTFAMILY.iransansx_bold,
     fontSize: FONTSIZE.size_12,
   },
 });

@@ -63,9 +63,9 @@ export default function UserScreen() {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={{ alignItems: 'center' }}>
-          <Avatar style={styles.avatar} />
-          <Text style={styles.name}>حسین پیرهادی</Text>
-          <Text style={styles.email}>info@hoseinpirhadi.ir</Text>
+          <Avatar style={styles.userAvatar} />
+          <Text style={styles.userName}>حسین پیرهادی</Text>
+          <Text style={styles.userEmail}>info@hoseinpirhadi.ir</Text>
         </View>
 
         <View style={styles.stats}>
@@ -101,12 +101,12 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  avatar: { width: 100, height: 100, borderRadius: 50, marginBottom: 16 },
-  name: {
+  userAvatar: { width: 100, height: 100, borderRadius: 50, marginBottom: 16 },
+  userName: {
     fontFamily: FONTFAMILY.iransansx_bold,
     fontSize: FONTSIZE.size_20,
   },
-  email: { fontSize: 14, color: 'gray', marginBottom: 20 },
+  userEmail: { fontSize: FONTSIZE.size_14, color: 'gray', marginBottom: 20 },
   stats: {
     flexDirection: 'row',
     justifyContent: 'space-around',
