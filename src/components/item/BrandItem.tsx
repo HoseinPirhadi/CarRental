@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
+import { COLORS, FONTFAMILY, FONTSIZE } from '../../theme/theme';
 
 const BrandItem = ({ brand }: any) => {
   return (

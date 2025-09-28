@@ -4,6 +4,7 @@ import Heart from '../assets/icons/heart.svg';
 import User from '../assets/icons/user.svg';
 import Search from '../assets/icons/search.svg';
 import ArrowLeft from '../assets/icons/arrow-left.svg';
+import ArrowRight from '../assets/icons/arrow-right.svg';
 import Gearbox from '../assets/icons/gearbox.svg';
 import GasStation from '../assets/icons/gas-station.svg';
 import Location from '../assets/icons/location.svg';
@@ -20,6 +21,7 @@ const icons = {
   user: User,
   search: Search,
   'arrow-left': ArrowLeft,
+  'arrow-right': ArrowRight,
   gearbox: Gearbox,
   'gas-station': GasStation,
   location: Location,

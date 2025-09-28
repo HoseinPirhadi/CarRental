@@ -1,13 +1,46 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
 import MyIcon from './MyIcon';
 
-const SearchBar = () => {
+type Props = TextInputProps & {
+  isSearching: boolean;
+  onCancel: (isSearching: boolean) => void;
+};
+
+const SearchBar = ({ isSearching, onCancel, ...props }: Props) => {
   return (
-    <View style={styles.container}>
-      <TextInput style={styles.searchInput} placeholder="جستجو ..." />
-      <MyIcon name="search" color={COLORS.Grey} />
+    <View style={{ flexDirection: 'row', gap: 10 }}>
+      {isSearching ? (
+        <TouchableOpacity
+          onPress={() => onCancel(false)}
+          style={{
+            width: 56,
+            height: 56,
+            backgroundColor: COLORS.White,
+            borderRadius: 12,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginStart: 15,
+          }}
+        >
+          <MyIcon name="arrow-right" />
+        </TouchableOpacity>
+      ) : null}
+      <View style={[styles.container, { marginStart: isSearching ? 0 : 15 }]}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="جستجو ..."
+          {...props}
+        />
+        <MyIcon name="search" color={COLORS.Grey} />
+      </View>
     </View>
   );
 };
@@ -16,11 +49,12 @@ export default SearchBar;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: COLORS.White,
-    marginHorizontal: 15,
+    marginEnd: 15,
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 12,

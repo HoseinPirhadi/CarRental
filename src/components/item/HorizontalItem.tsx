@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
-import MyIcon from './MyIcon';
+import { COLORS, FONTFAMILY, FONTSIZE } from '../../theme/theme';
+import MyIcon from '../MyIcon';
 
 type Props = {
   car: any;

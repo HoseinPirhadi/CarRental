@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import FavItem from '../components/FavItem';
+import FavItem from '../components/item/FavItem';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, selectFavorites } from '../store/favoritesSlice';
@@ -31,22 +31,8 @@ const FavoriteScreen = () => {
 
   if (favoriteItems.length === 0) {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: FONTFAMILY.iransansx_medium,
-            fontSize: FONTSIZE.size_18,
-            color: 'gray',
-          }}
-        >
-          لیست علاقه‌مندی‌های شما خالی است.
-        </Text>
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>لیست علاقه‌مندی‌های شما خالی است.</Text>
       </View>
     );
   }
@@ -67,4 +53,15 @@ const FavoriteScreen = () => {
 
 export default FavoriteScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontFamily: FONTFAMILY.iransansx_medium,
+    fontSize: FONTSIZE.size_18,
+    color: 'gray',
+  },
+});

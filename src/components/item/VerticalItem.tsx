@@ -1,14 +1,14 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MyIcon from './MyIcon';
-import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme';
+import MyIcon from '../MyIcon';
+import { COLORS, FONTFAMILY, FONTSIZE } from '../../theme/theme';
 
 type Props = {
   car: any;
   onPress: (car: object) => void;
 };
 
-const VerticalItem = ({ car, onPress }: Props) => {
+const VerticalItem = React.memo(({ car, onPress }: Props) => {
   return (
     <TouchableOpacity style={styles.countainer} onPress={() => onPress(car)}>
       <Image source={car.image} style={styles.carImage} resizeMode="contain" />
@@ -33,7 +33,7 @@ const VerticalItem = ({ car, onPress }: Props) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 export default VerticalItem;
 
