@@ -11,7 +11,10 @@ const Stack = createNativeStackNavigator();
 
 function RootStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName="Tab"
+    >
       <Stack.Screen name="Tab" component={BottomNavigator} />
       <Stack.Screen name="CarDetail" component={CarDetailScreen} />
     </Stack.Navigator>

@@ -4,6 +4,7 @@ import Heart from '../assets/icons/heart.svg';
 import User from '../assets/icons/user.svg';
 import Search from '../assets/icons/search.svg';
 import ArrowLeft from '../assets/icons/arrow-left.svg';
+import ArrowLeft2 from '../assets/icons/arrow-left-2.svg';
 import ArrowRight from '../assets/icons/arrow-right.svg';
 import Gearbox from '../assets/icons/gearbox.svg';
 import GasStation from '../assets/icons/gas-station.svg';
@@ -14,6 +15,13 @@ import Speedometer from '../assets/icons/speedometer.svg';
 import Bucket from '../assets/icons/bucket.svg';
 import HeartFill from '../assets/icons/heart-fill.svg';
 import CloseCircle from '../assets/icons/close-circle.svg';
+import UserEdit from '../assets/icons/user-edit.svg';
+import Lock from '../assets/icons/lock.svg';
+import ReceiptText from '../assets/icons/receipt-text.svg';
+import Notification from '../assets/icons/notification.svg';
+import MessageQuestion from '../assets/icons/message-question.svg';
+import Lifebuoy from '../assets/icons/lifebuoy.svg';
+import Logout from '../assets/icons/logout.svg';
 
 const icons = {
   home: Home,
@@ -21,6 +29,7 @@ const icons = {
   user: User,
   search: Search,
   'arrow-left': ArrowLeft,
+  'arrow-left-2': ArrowLeft2,
   'arrow-right': ArrowRight,
   gearbox: Gearbox,
   'gas-station': GasStation,
@@ -31,6 +40,13 @@ const icons = {
   bucket: Bucket,
   'heart-fill': HeartFill,
   'close-Circle': CloseCircle,
+  'user-edit': UserEdit,
+  lock: Lock,
+  'receipt-text': ReceiptText,
+  notification: Notification,
+  'message-question': MessageQuestion,
+  lifebuoy: Lifebuoy,
+  logout: Logout,
 };
 
 type IconProps = {
