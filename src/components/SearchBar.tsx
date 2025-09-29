@@ -20,15 +20,7 @@ const SearchBar = ({ isSearching, onCancel, ...props }: Props) => {
       {isSearching ? (
         <TouchableOpacity
           onPress={() => onCancel(false)}
-          style={{
-            width: 56,
-            height: 56,
-            backgroundColor: COLORS.White,
-            borderRadius: 12,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginStart: 15,
-          }}
+          style={styles.btnCloseSearch}
         >
           <MyIcon name="arrow-right" />
         </TouchableOpacity>
@@ -58,6 +50,15 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 12,
+  },
+  btnCloseSearch: {
+    width: 56,
+    height: 56,
+    backgroundColor: COLORS.White,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginStart: 15,
   },
   searchInput: {
     flex: 1,
