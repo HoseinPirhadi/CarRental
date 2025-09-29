@@ -1,7 +1,10 @@
 package com.carrental
 
 import android.os.Bundle
-
+import android.os.Build
+import android.view.View
+import android.view.Window
+import android.graphics.Color
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -25,4 +28,23 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+
+    fun setNavigationBarColor(colorHex: String, lightButtons: Boolean) {
+        runOnUiThread {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val window: Window = window
+                window.navigationBarColor = Color.parseColor(colorHex)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    var flags = window.decorView.systemUiVisibility
+                    flags = if (lightButtons) {
+                        flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
+                    } else {
+                        flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                    window.decorView.systemUiVisibility = flags
+                }
+            }
+        }
+    }
 }

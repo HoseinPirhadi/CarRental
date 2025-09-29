@@ -15,7 +15,7 @@ const BottomNavigator = () => {
       screenOptions={{
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          height: 100,
+          minHeight: 100,
           paddingTop: 15,
         },
         headerTitleStyle: {
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 8,
+    marginBottom: 15,
   },
   bottomDot: {
     width: 6,

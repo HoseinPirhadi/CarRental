@@ -42,7 +42,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <StatusBar barStyle={'dark-content'} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <SearchBar
@@ -69,6 +69,7 @@ const HomeScreen = () => {
               style={styles.horizontalList}
               horizontal
               showsHorizontalScrollIndicator={false}
+              initialScrollIndex={0}
             />
 
             <SectionHeader title="خودرو های لوکس" />
@@ -83,6 +84,7 @@ const HomeScreen = () => {
               contentContainerStyle={{ paddingTop: 25, paddingEnd: 15 }}
               horizontal
               showsHorizontalScrollIndicator={false}
+              initialScrollIndex={0}
             />
 
             <SectionHeader title="جدیدترین ها" />
@@ -105,7 +107,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: -26,
+    flex: 1,
   },
   horizontalList: {
     marginHorizontal: 15,

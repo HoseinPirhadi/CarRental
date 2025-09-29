@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import CarDetailScreen from './screens/CarDetailScreen';
+import { NativeModules, Platform } from 'react-native';
+import { COLORS } from './theme/theme';
+const { NavigationBar } = NativeModules;
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +25,12 @@ function RootStack() {
 }
 
 export default function App() {
+  React.useEffect(() => {
+    if (Platform.OS === 'android' && NavigationBar) {
+      NavigationBar.setColor(COLORS.White, false);
+    }
+  }, []);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

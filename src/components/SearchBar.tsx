@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
+  Keyboard,
   StyleSheet,
   TextInput,
   TextInputProps,
@@ -15,6 +16,16 @@ type Props = TextInputProps & {
 };
 
 const SearchBar = ({ isSearching, onCancel, ...props }: Props) => {
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    const showListener = Keyboard.addListener('keyboardDidHide', () => {
+      inputRef.current?.blur();
+      Keyboard.dismiss();
+    });
+    return () => showListener.remove();
+  }, []);
+
   return (
     <View style={{ flexDirection: 'row', gap: 10 }}>
       {isSearching ? (
@@ -47,6 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.White,
     marginEnd: 15,
+    marginTop: 15,
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 12,
@@ -59,6 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginStart: 15,
+    marginTop: 15,
   },
   searchInput: {
     flex: 1,

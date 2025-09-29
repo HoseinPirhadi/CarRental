@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  ActivityIndicator,
+  Button,
   Image,
   StatusBar,
   StyleSheet,
@@ -40,9 +42,51 @@ const CarDetailScreen = () => {
   const iconName = isFavorite ? 'heart-fill' : 'heart';
   const iconColor = isFavorite ? COLORS.Primary : COLORS.Black;
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (loading) {
+        setError(true);
+        setLoading(false);
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [loading]);
+
+  const handleMapLoad = () => {
+    setLoading(false);
+    setError(false);
+  };
+
+  if (error) {
+    return (
+      <View
+        style={[
+          styles.overlayContainer,
+          {
+            backgroundColor: COLORS.White,
+          },
+        ]}
+      >
+        <Text style={styles.overlayText}>
+          بارگذاری نقشه موفق نبود. اتصال اینترنت را بررسی کنید.
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.reservBtn}
+        >
+          <Text style={styles.reservText}>بازگشت</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainerL}>
+      <View style={styles.headerContainer}>
         <View style={styles.headerContent}>
           <TouchableOpacity onPress={handleToggleFavorite}>
             <MyIcon name={iconName} color={iconColor} />
@@ -59,18 +103,28 @@ const CarDetailScreen = () => {
         logoEnabled={false}
         compassEnabled={false}
         rotateEnabled={false}
+        onDidFinishLoadingMap={() => setLoading(false)}
         mapStyle="https://map.ir/vector/styles/main/mapir-xyz-style-min-poi.json"
       >
         <Camera
           centerCoordinate={[car.longitude, car.latitude]}
           zoomLevel={14}
-          minZoomLevel={11}
-          maxZoomLevel={15}
+          minZoomLevel={8}
+          maxZoomLevel={19}
         />
         <MarkerView coordinate={[car.longitude, car.latitude]}>
           <MyIcon name="location-bold" color={COLORS.Primary} size={35} />
         </MarkerView>
       </MapView>
+
+      {loading && (
+        <View style={styles.overlayContainer}>
+          <ActivityIndicator size="large" color={COLORS.White} />
+          <Text style={[styles.overlayText, { color: COLORS.White }]}>
+            در حال بارگذاری نقشه...
+          </Text>
+        </View>
+      )}
 
       <View style={styles.bottomContainer}>
         <View style={styles.bottomHeader}>
@@ -143,14 +197,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headerContainerL: {
+  headerContainer: {
     position: 'absolute',
     height: 56,
     width: '100%',
     top: 0,
     left: 0,
     alignItems: 'center',
-    marginTop: StatusBar.currentHeight,
+    marginTop: (StatusBar.currentHeight || 0) + 15,
     paddingHorizontal: 15,
     zIndex: 2,
   },
@@ -174,6 +228,23 @@ const styles = StyleSheet.create({
   mapContainer: {
     flex: 1,
     alignSelf: 'stretch',
+    backgroundColor: COLORS.White,
+  },
+  overlayContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  overlayText: {
+    color: COLORS.Black,
+    fontFamily: FONTFAMILY.iransansx_bold,
+    fontSize: FONTSIZE.size_16,
+    marginVertical: 16,
   },
   bottomContainer: {
     borderRadius: 25,
@@ -209,6 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginTop: -25,
     padding: 25,
+    paddingBottom: 66,
     gap: 15,
   },
   bottmHeadingText: {
