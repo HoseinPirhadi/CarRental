@@ -1,10 +1,24 @@
 # 🚗 CarRental – React Native App
 
+<!-- Tech badges -->
+![React Native](https://img.shields.io/badge/React%20Native-0.81.4-61dafb?logo=react&logoColor=white)
+![Redux](https://img.shields.io/badge/Redux-Toolkit-764abc?logo=redux&logoColor=white)
+![MapLibre](https://img.shields.io/badge/MapLibre-10.2.1-4caf50?logo=mapbox&logoColor=white)
+
 ![CarRental App Screenshots](./screenshots/screenshot.png)
 
 CarRental is a **demo mobile application** built with **React Native (v0.81.4)** without Expo.  
 It showcases a modern app structure with bottom tab navigation, state management using Redux Toolkit, and open-source map integration via MapLibre.  
 The project is designed purely for **portfolio and demonstration purposes**, focusing on clean UI, modular architecture, and best practices in React Native development.
+
+---
+
+## 📥 Download APKs
+
+Download the APK for your device architecture:
+
+[![Download arm64-v8a](https://img.shields.io/badge/Download-arm64--v8a-green)](https://github.com/HoseinPirhadi/CarRental/releases/download/v1.0.0/app-arm64-v8a-release.apk)
+[![Download armeabi-v7a](https://img.shields.io/badge/Download-armeabi--v7a-blue)](https://github.com/HoseinPirhadi/CarRental/releases/download/v1.0.0/app-armeabi-v7a-release.apk)
 
 ---
 
